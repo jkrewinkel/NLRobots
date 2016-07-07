@@ -1,3 +1,10 @@
+###NLRobots architecture
+
+NLRobots is built on Ubuntu as it is one of the most widely used server software with the least overhead.
+PHP7 is used for the backend. 7 specifically because of its speed.
+MySQL is used for for the SAP and web-store database and could be used for the MultiVAC database as well (in a EAV schema),
+the reason for using MySQL is the relational structure of the SAP and store data.
+
 ###Configured using PuPHPet
 Provider: VirtualBox
 OS: Ubuntu Trusty 14.04 LTS x32 (PHP 7, 5.6, 5.5, HHVM)
