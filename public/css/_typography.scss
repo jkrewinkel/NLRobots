@@ -1,0 +1,27 @@
+html{
+  color: $middleBlue;
+  font-family: 'Roboto', sans-serif;
+  font-size: 17px;
+  line-height: 1.75em;
+  text-rendering: optimizeLegibility;
+  text-rendering: geometricPrecision;
+  font-smooth: always;
+
+  font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+h1, h2, h3, h4{
+  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  color: $darkBlue;
+}
+h1{
+  font-size: 2.2em;
+}
+a{
+  text-decoration: none;
+  color: $lightBlue;
+  border-bottom: 2px solid $lightBlue;
+}

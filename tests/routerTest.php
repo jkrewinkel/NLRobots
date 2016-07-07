@@ -1,6 +1,6 @@
 <?php
 
-require 'index.php';
+require_once 'index.php';
 
 class routerTest extends \PHPUnit_Framework_TestCase{
 
@@ -10,6 +10,7 @@ class routerTest extends \PHPUnit_Framework_TestCase{
         $router = new Router();
         $this->assertEquals('index', $router->getController());
         $this->assertEquals('index', $router->getAction());
+        $this->assertEquals('indexController', get_class($router->getRoute()) );
     }
 
     // - Get the url and split it up into an array

@@ -1,17 +1,17 @@
 <?php
 class Router{
 
-    public $action = 'index';
-    public $controller = 'index';
+    private $action = 'index';
+    private $controller = 'index';
 
     // List of routes, with the first element being the controller
     // the second the action and the consequent elements the extra parameters passed
     // to the action
-    public $routes = array();
+    private $routes = array();
 
     // As an extra layer underneath the Controller we add the app layer
     // this layer decides which application to use (MultiVAC, SAP and Store)
-    public $app = 'store';
+    private $app = 'store';
 
     // When instantiating the object a url is passed, otherwise it will
     // default to the Index controller
@@ -28,7 +28,7 @@ class Router{
 
         // Set the controller and action accordingly to the routes
         // or else set them according to the default values of 'store/index/index'
-        $this->app = $this->routes[0];
+        $this->app = ( $this->routes[0] != '' ) ? $this->routes[0] : $this->app;
         $this->controller = isset( $this->routes[1] ) ? $this->routes[1] : $this->action;
         $this->action = isset( $this->routes[2] ) ? $this->routes[2] : $this->action;
 
@@ -44,9 +44,8 @@ class Router{
             $parse = parse_url($url);
             $url = $parse['path'];
         }
-
         // Split the path and enter the routes into an array
-        return $this->routes = explode( '/', trim( $url, '/' ) );
+        return $this->routes = explode( '/', htmlspecialchars(trim( $url, '/' )) );
 
     }
 
@@ -69,7 +68,10 @@ class Router{
         if( file_exists( $file ) ){
             require_once $file;
             $className = $this->getController() . 'Controller';
-            return new $className;
+            $controllerClass = new $className;
+            $actionName = $this->getAction();
+            $controllerClass->$actionName();
+            return $controllerClass;
         } else return '404'; // TO DO: Create the 404 controller
 
     }

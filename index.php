@@ -31,6 +31,12 @@ define( 'BASE_URL_SECURE', 'https://www.nlrobots.corp' );
  *  Load the core classes
  */
 require 'core' . SLASH . 'router.php';
+require 'core' . SLASH . 'loader.php';
+require 'core' . SLASH . 'controller.php';
+require 'core' . SLASH . 'model.php';
 
-$router = new Router();
-
+// Initialize the application
+// Comment these lines for testing
+session_start();
+$router = new Router($_SERVER['REQUEST_URI']);
+$controller = $router->getRoute();
